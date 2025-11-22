@@ -16,31 +16,26 @@ class UserView extends HookConsumerWidget {
     final searchCtrl = useTextEditingController();
     return Scaffold(
       appBar: AppBar(title: const Text('Users')),
-      body: AsyncBuilder(
-        asyncValue: usersData,
-        emptyText: 'No users found',
-        emptyIcon: const Icon(Icons.person_rounded),
-        emptyWhen: (d) => d.data.isEmpty,
-        builder: (users) {
-          return Padding(
-            padding: Pads.lg(),
-            child: Column(
-              spacing: Insets.med,
-              children: [
-                KTextField(
-                  hintText: 'Search by name or email',
-                  controller: searchCtrl,
-                  onChanged: (q) => debouncer(() => userCtrl.search(q)),
-                  prefixIcon: Icon(Icons.search_rounded, color: context.colors.outlineVariant),
-                  suffixIcon: const Icon(Icons.close_rounded).clickable(onTap: () => searchCtrl.clear()),
-                ),
-                Expanded(
-                  child:AsyncBuilder(
-        asyncValue: usersData,
-        emptyText: 'No users found',
-        emptyIcon: const Icon(Icons.person_rounded),
-        emptyWhen: (d) => d.data.isEmpty,
-        builder: (users) { return Refresher(
+      body: Padding(
+        padding: Pads.lg(),
+        child: Column(
+          spacing: Insets.med,
+          children: [
+            KTextField(
+              hintText: 'Search by name or email',
+              controller: searchCtrl,
+              onChanged: (q) => debouncer(() => userCtrl.search(q)),
+              prefixIcon: Icon(Icons.search_rounded, color: context.colors.outlineVariant),
+              suffixIcon: const Icon(Icons.close_rounded).clickable(onTap: () => searchCtrl.clear()),
+            ),
+            Expanded(
+              child: AsyncBuilder(
+                asyncValue: usersData,
+                emptyText: 'No users found',
+                emptyIcon: const Icon(Icons.person_rounded),
+                emptyWhen: (d) => d.data.isEmpty,
+                builder: (users) {
+                  return Refresher(
                     onLoadMore: () => userCtrl.loadNext(),
                     onRefresh: () => userCtrl.refresh(),
                     child: ListView.separated(
@@ -53,12 +48,12 @@ class UserView extends HookConsumerWidget {
                         return UserCard(user: user);
                       },
                     ),
-                  ),},
-                ),),
-              ],
+                  );
+                },
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

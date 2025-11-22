@@ -25,16 +25,16 @@ class MyApp extends HookConsumerWidget {
         theme: AppTheme.lightTheme,
         themeMode: ThemeMode.light,
         routerConfig: ref.watch(routerProvider),
-        builder: (context, child) {
-          return 
-ConnectivityBuilder(
-      builder: (status) {
-        bool connected = status == ConnectivityStatus.online;
-        return Text(connected ? "Online" : "Offline");
-      },
-    );
+//         builder: (context, child) {
+//           return 
+// ConnectivityBuilder(
+//       builder: (status) {
+//         bool connected = status == ConnectivityStatus.online;
+//         return Text(connected ? "Online" : "Offline");
+//       },
+//     );
 
-        },
+//         },
       ),
     );
   }

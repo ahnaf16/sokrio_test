@@ -3,7 +3,7 @@ import 'package:linkify/main.export.dart';
 import 'package:linkify/models/paged_item.dart';
 import 'package:linkify/models/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+ 
 part 'user_ctrl.g.dart';
 
 @Riverpod(keepAlive: true)
