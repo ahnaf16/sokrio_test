@@ -12,6 +12,7 @@ Used flutter sdk version 3.38.2 and tested on Android platform
 4. Pagination
 5. Pull to refresh
 6. Dependency Injection
+7. Offline integration
 
 ## Notes
 

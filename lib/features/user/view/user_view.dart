@@ -34,6 +34,20 @@ class UserView extends HookConsumerWidget {
                 emptyText: 'No users found',
                 emptyIcon: const Icon(Icons.person_rounded),
                 emptyWhen: (d) => d.data.isEmpty,
+                onEmpty: () => Refresher(
+                  onLoadMore: () => userCtrl.loadNext(),
+                  onRefresh: () => userCtrl.refresh(),
+                  child: SingleChildScrollView(
+                    padding: Pads.only(top: Insets.offset),
+                    child: Column(
+                      children: [
+                        const Icon(Icons.person_rounded, size: 40),
+                        const Gap(Insets.lg),
+                        Text('No users found', style: context.text.titleLarge),
+                      ],
+                    ),
+                  ),
+                ),
                 builder: (users) {
                   return Refresher(
                     onLoadMore: () => userCtrl.loadNext(),
